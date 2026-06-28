@@ -14,8 +14,11 @@ from components.cards.insight_card import insight_card
 
 from components.feedback.empty_state import empty_state
 
+from components.cards.statistics_cards import render_statistics
 
-df = st.session_state.dataset
+from components.cards.top_insight import render_top_insight
+
+
 
 
 def render_dashboard():
@@ -104,25 +107,13 @@ def render_dashboard():
 
     with col2:
 
-        insight_card(
-
-            "Noch keine Daten vorhanden.",
-
-            """
-            Sobald eine CSV-Datei geladen wurde,
-            erscheinen hier automatisch
-            die wichtigsten Erkenntnisse.
-            """,
-
-        )
+        render_top_insight(df)
 
     st.write("")
+    
 
-    if df is None:
+    df = st.session_state.dataset
 
-        empty_state()
+    if df is not None:
 
-    else:
-        st.success(
-            f"{len(df):,} Datensätze automatisch geladen."
-        )
+        render_statistics(df)

@@ -1,35 +1,41 @@
 """
-Top Insight.
+Top Insight Card.
 """
 
 import streamlit as st
 
 from analysis.insights import (
+    top_album,
     top_artist,
     top_track,
-    top_album,
 )
 
 
-def render_top_insight(df):
+def render_top_insight(df) -> None:
+    """
+    Zeigt die wichtigsten Erkenntnisse.
+    """
 
-    st.subheader("💡 Top Insight")
+    if df is None:
+        return
 
-    st.write(
+    st.subheader("💡 Top Insights")
+
+    st.markdown(
         f"""
-**Lieblingsartist**
+**🎤 Lieblingsartist**
 
 {top_artist(df)}
 
 ---
 
-**Meistgehörter Song**
+**🎵 Meistgehörter Song**
 
 {top_track(df)}
 
 ---
 
-**Meistgehörtes Album**
+**💿 Meistgehörtes Album**
 
 {top_album(df)}
 """

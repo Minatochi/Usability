@@ -1,119 +1,82 @@
 """
-Dashboard View
+Dashboard View.
+
+Startseite der Anwendung.
 """
 
 import streamlit as st
 
 from components.layout.page_header import page_header
-
-from components.cards.metric_card import metric_card
-
+from components.cards.statistics_cards import render_statistics
 from components.cards.info_card import info_card
-
-from components.cards.insight_card import insight_card
-
+from components.cards.top_insight import render_top_insight
 from components.feedback.empty_state import empty_state
 
-from components.cards.statistics_cards import render_statistics
 
-from components.cards.top_insight import render_top_insight
+def render_dashboard() -> None:
+    """
+    Rendert das Dashboard.
+    """
 
+    # --------------------------------------------------
+    # Datensatz laden
+    # --------------------------------------------------
 
+    df = st.session_state.get("dataset")
 
-
-def render_dashboard():
+    # --------------------------------------------------
+    # Seitenkopf
+    # --------------------------------------------------
 
     page_header(
-
         "Spotify Analytics",
-
         "Professionelle Analyse deiner Spotify-Historie",
-
     )
 
-    col1, col2, col3, col4 = st.columns(4)
+    # --------------------------------------------------
+    # Keine Daten vorhanden
+    # --------------------------------------------------
 
-    with col1:
+    if df is None:
 
-        metric_card(
+        empty_state()
 
-            "Songs",
+        return
 
-            "-",
+    # --------------------------------------------------
+    # KPI Bereich
+    # --------------------------------------------------
 
-            "🎵",
-
-        )
-
-    with col2:
-
-        metric_card(
-
-            "Artists",
-
-            "-",
-
-            "🎤",
-
-        )
-
-    with col3:
-
-        metric_card(
-
-            "Genres",
-
-            "-",
-
-            "🎼",
-
-        )
-
-    with col4:
-
-        metric_card(
-
-            "Stunden",
-
-            "-",
-
-            "⏱️",
-
-        )
+    render_statistics(df)
 
     st.write("")
 
-    col1, col2 = st.columns([2, 1])
+    # --------------------------------------------------
+    # Dashboard Inhalt
+    # --------------------------------------------------
 
-    with col1:
+    left, right = st.columns([2, 1])
+
+    with left:
 
         info_card(
+            title="Willkommen",
+            icon="🎧",
+            text="""
+Willkommen bei Spotify Analytics.
 
-            "Willkommen",
+Dieses Dashboard bietet dir einen Überblick über deine
+Spotify-Historie.
 
-            """
-            Willkommen bei Spotify Analytics.
-
-            Dieses Dashboard führt dich Schritt für Schritt
-            durch deine Spotify-Historie.
-
-            Im nächsten Sprint wird hier automatisch
-            deine CSV geladen.
-            """,
-
-            "🎧",
-
+Im weiteren Verlauf werden hier Diagramme,
+Filter und KI-gestützte Analysen ergänzt.
+""",
         )
 
-    with col2:
+    with right:
 
         render_top_insight(df)
 
     st.write("")
-    
 
-    df = st.session_state.dataset
-
-    if df is not None:
-
-        render_statistics(df)
+    st.success(f"✅ {len(df):,} Datensätze erfolgreich geladen.")

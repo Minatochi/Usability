@@ -103,3 +103,51 @@ Visualisierungen und interaktive Analysen.
     st.success(
         f"✅ {len(df):,} Datensätze erfolgreich geladen."
     )
+
+    from components.charts.top_genre_card import (
+        render_top_genre_card,
+    )
+
+    from components.charts.popularity_card import (
+        render_popularity_card,
+    )
+
+    from components.tables.data_preview import (
+        data_preview,
+    )
+
+    st.write("")
+
+    dashboard_section(
+
+        "Genres",
+
+        "Genreverteilung im Datensatz.",
+
+    )
+
+    render_top_genre_card(df)
+
+    st.write("")
+
+    dashboard_section(
+
+        "Popularität",
+
+        "Popularitätsverteilung.",
+
+    )
+
+    render_popularity_card(df)
+
+    st.write("")
+
+    dashboard_section(
+
+        "Datenvorschau",
+
+        "Erste Zeilen des Datensatzes.",
+
+    )
+
+    data_preview(df)

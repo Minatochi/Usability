@@ -19,7 +19,16 @@ def metric_card(
         with left:
 
             st.markdown(
-                f"# {icon}"
+                f"""
+            <div style="
+            font-size:38px;
+            text-align:center;
+            padding-top:8px;
+            ">
+            {icon}
+            </div>
+            """,
+                unsafe_allow_html=True,
             )
 
         with right:

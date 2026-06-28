@@ -1,13 +1,9 @@
 """
 colors.py
-----------
 
-Zentrale Farbdefinitionen des Design Systems.
-
+Zentrales Farbsystem der Anwendung.
 Alle Farben werden ausschließlich hier definiert.
-Im restlichen Projekt dürfen keine Hex-Farben verwendet werden.
 """
-
 
 # ==========================================================
 # Brand
@@ -18,7 +14,7 @@ PRIMARY_HOVER = "#1ED760"
 PRIMARY_ACTIVE = "#169C46"
 
 # ==========================================================
-# Background
+# Hintergrund
 # ==========================================================
 
 BACKGROUND = "#0F1117"
@@ -32,35 +28,39 @@ SIDEBAR = "#121418"
 
 TEXT_PRIMARY = "#F5F5F5"
 TEXT_SECONDARY = "#B8BEC8"
-TEXT_DISABLED = "#70757F"
+TEXT_MUTED = "#8D939C"
+TEXT_DISABLED = "#6F7682"
 
 # ==========================================================
-# Status
+# Statusfarben
 # ==========================================================
 
 SUCCESS = "#2ECC71"
+INFO = "#3498DB"
 WARNING = "#F39C12"
 ERROR = "#E74C3C"
-INFO = "#3498DB"
 
 # ==========================================================
-# Borders
+# Border
 # ==========================================================
 
 BORDER = "#30343C"
-DIVIDER = "#2A2F36"
+DIVIDER = "#3A3F48"
 
 # ==========================================================
-# Charts
+# Diagramme
 # ==========================================================
+
+CHART_PRIMARY = "#1DB954"
+CHART_SECONDARY = "#4CC9F0"
+CHART_ACCENT = "#4361EE"
+CHART_WARNING = "#F8961E"
+CHART_HIGHLIGHT = "#F72585"
 
 CHART_COLORS = [
-    "#1DB954",
-    "#4CC9F0",
-    "#4361EE",
-    "#F72585",
-    "#F8961E",
-    "#90BE6D",
-    "#7209B7",
-    "#577590",
+    CHART_PRIMARY,
+    CHART_SECONDARY,
+    CHART_ACCENT,
+    CHART_WARNING,
+    CHART_HIGHLIGHT,
 ]

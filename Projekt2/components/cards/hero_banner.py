@@ -16,14 +16,11 @@ def hero_banner(dataset_size: int) -> None:
         f"""
 # 🎵 Spotify Analytics
 
-Willkommen zu deiner persönlichen Spotify-Auswertung.
+Analysiere deinen Spotify-Datensatz
+mit interaktiven Visualisierungen
+und wissenschaftlich fundierten
+Auswertungen.
 
-Aktuell werden **{dataset_size:,} Wiedergaben**
-analysiert.
-
-Nutze die Navigation auf der linken Seite,
-um verschiedene Bereiche deiner Hörhistorie
-zu erkunden.
 """
     )
 

@@ -127,44 +127,44 @@ button[data-baseweb="tab"][aria-selected="true"] {{
 
 }}
 
-p {
+p {{
     line-height: 1.6;
     font-size: 16px;
-}
+}}
 
-li {
+li {{
 
     line-height: 1.7;
 
     margin-bottom: 6px;
 
-}
+}}
 
-h1 {
+h1 {{
 
     font-weight:700;
 
     margin-bottom:12px;
 
-}
+}}
 
-h2{
+h2{{
 
     margin-top:32px;
 
     margin-bottom:12px;
 
-}
+}}
 
-h3{
+h3{{
 
     margin-top:24px;
 
     margin-bottom:8px;
 
-}
+}}
 
-hr{
+hr{{
 
     margin-top:32px;
 
@@ -172,29 +172,29 @@ hr{
 
     border-color:#30343C;
 
-}
+}}
 
-div[data-testid="metric-container"]{
+div[data-testid="metric-container"]{{
 
     padding:24px;
 
     min-height:140px;
 
-}
+}}
 
-div[data-testid="stDataFrame"]{
+div[data-testid="stDataFrame"]{{
 
     border-radius:16px;
 
     overflow:hidden;
 
-}
+}}
 
-section[data-testid="stSidebar"]{
+section[data-testid="stSidebar"]{{
 
     padding-top:20px;
 
-}
+}}
 
 
 

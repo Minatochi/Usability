@@ -1,7 +1,5 @@
 """
 Dashboard View.
-
-Startseite der Anwendung.
 """
 
 import streamlit as st
@@ -10,32 +8,20 @@ from components.layout.page_header import page_header
 from components.cards.statistics_cards import render_statistics
 from components.cards.info_card import info_card
 from components.cards.top_insight import render_top_insight
+from components.cards.hero_banner import hero_banner
+from components.cards.quick_overview import quick_overview
+from components.cards.dashboard_section import dashboard_section
 from components.feedback.empty_state import empty_state
 
 
 def render_dashboard() -> None:
-    """
-    Rendert das Dashboard.
-    """
-
-    # --------------------------------------------------
-    # Datensatz laden
-    # --------------------------------------------------
 
     df = st.session_state.get("dataset")
-
-    # --------------------------------------------------
-    # Seitenkopf
-    # --------------------------------------------------
 
     page_header(
         "Spotify Analytics",
         "Professionelle Analyse deiner Spotify-Historie",
     )
-
-    # --------------------------------------------------
-    # Keine Daten vorhanden
-    # --------------------------------------------------
 
     if df is None:
 
@@ -43,17 +29,21 @@ def render_dashboard() -> None:
 
         return
 
-    # --------------------------------------------------
-    # KPI Bereich
-    # --------------------------------------------------
+    hero_banner(len(df))
+
+    dashboard_section(
+        "Kennzahlen",
+        "Die wichtigsten Kennzahlen deiner Spotify-Historie.",
+    )
 
     render_statistics(df)
 
     st.write("")
 
-    # --------------------------------------------------
-    # Dashboard Inhalt
-    # --------------------------------------------------
+    dashboard_section(
+        "Erste Erkenntnisse",
+        "Automatisch erzeugte Insights.",
+    )
 
     left, right = st.columns([2, 1])
 
@@ -63,13 +53,10 @@ def render_dashboard() -> None:
             title="Willkommen",
             icon="🎧",
             text="""
-Willkommen bei Spotify Analytics.
+Dieses Dashboard dient als zentrale Startseite.
 
-Dieses Dashboard bietet dir einen Überblick über deine
-Spotify-Historie.
-
-Im weiteren Verlauf werden hier Diagramme,
-Filter und KI-gestützte Analysen ergänzt.
+Im weiteren Verlauf erscheinen hier
+Visualisierungen und interaktive Analysen.
 """,
         )
 
@@ -79,4 +66,29 @@ Filter und KI-gestützte Analysen ergänzt.
 
     st.write("")
 
-    st.success(f"✅ {len(df):,} Datensätze erfolgreich geladen.")
+    dashboard_section(
+        "Überblick",
+        "Kurze Einführung in die Analyse.",
+    )
+
+    quick_overview(df)
+
+    from components.charts.top_artist_card import (
+        render_top_artist_card,
+    )
+
+    st.write("")
+
+    dashboard_section(
+
+        "Top Künstler",
+
+        "Die meistgehörten Künstler deiner Spotify-Historie.",
+
+    )
+
+    render_top_artist_card(df)
+
+    st.success(
+        f"✅ {len(df):,} Datensätze erfolgreich geladen."
+    )

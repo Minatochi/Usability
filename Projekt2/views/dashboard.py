@@ -15,6 +15,9 @@ from components.cards.insight_card import insight_card
 from components.feedback.empty_state import empty_state
 
 
+df = st.session_state.dataset
+
+
 def render_dashboard():
 
     page_header(
@@ -115,4 +118,11 @@ def render_dashboard():
 
     st.write("")
 
-    empty_state()
+    if df is None:
+
+        empty_state()
+
+    else:
+        st.success(
+            f"{len(df):,} Datensätze automatisch geladen."
+        )

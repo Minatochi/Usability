@@ -3,7 +3,7 @@ Navigation der SPA.
 """
 
 import streamlit as st
-
+from components.navigation.data_menu import render_data_menu
 
 PAGES = {
 
@@ -29,6 +29,10 @@ PAGES = {
 def sidebar_navigation():
 
     st.sidebar.title("Spotify Analytics")
+
+    render_data_menu()
+
+    st.sidebar.markdown("---")
 
     st.sidebar.markdown("---")
 

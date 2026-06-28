@@ -38,6 +38,17 @@ def render_dashboard() -> None:
 
     render_statistics(df)
 
+    from components.charts.audio_feature_cards import (
+        render_audio_features,
+    )
+
+    dashboard_section(
+        "Audio Features",
+        "Durchschnittliche Eigenschaften deiner Musik.",
+    )
+
+    render_audio_features(df)
+
     st.write("")
 
     dashboard_section(

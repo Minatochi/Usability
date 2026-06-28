@@ -2,7 +2,7 @@
 Top Artist Dashboard Card.
 """
 
-from analysis.top_artists import top_artists
+from analysis.spotify_analysis import SpotifyAnalysis
 
 from visualization.top_artists_chart import (
     top_artists_chart,
@@ -15,7 +15,7 @@ from components.cards.chart_card import (
 
 def render_top_artist_card(df):
 
-    artists = top_artists(df)
+    artists = SpotifyAnalysis.top_artists(df)
 
     figure = top_artists_chart(artists)
 

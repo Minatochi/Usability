@@ -1,34 +1,118 @@
 """
-Dashboard Startseite.
+Dashboard View
 """
 
 import streamlit as st
 
+from components.layout.page_header import page_header
+
+from components.cards.metric_card import metric_card
+
+from components.cards.info_card import info_card
+
+from components.cards.insight_card import insight_card
+
+from components.feedback.empty_state import empty_state
+
 
 def render_dashboard():
 
-    st.title("Spotify Analytics")
+    page_header(
 
-    st.caption(
-        "Professionelle Analyse deiner Spotify-Historie"
+        "Spotify Analytics",
+
+        "Professionelle Analyse deiner Spotify-Historie",
+
     )
-
-    st.divider()
 
     col1, col2, col3, col4 = st.columns(4)
 
-    col1.metric("Songs", "-")
-    col2.metric("Artists", "-")
-    col3.metric("Genres", "-")
-    col4.metric("Stunden", "-")
+    with col1:
 
-    st.info(
-        """
-        👋 Willkommen!
+        metric_card(
 
-        Dies ist das neue Dashboard von Projekt2.
+            "Songs",
 
-        Im nächsten Sprint werden CSV-Import,
-        Datenanalyse und Visualisierungen integriert.
-        """
-    )
+            "-",
+
+            "🎵",
+
+        )
+
+    with col2:
+
+        metric_card(
+
+            "Artists",
+
+            "-",
+
+            "🎤",
+
+        )
+
+    with col3:
+
+        metric_card(
+
+            "Genres",
+
+            "-",
+
+            "🎼",
+
+        )
+
+    with col4:
+
+        metric_card(
+
+            "Stunden",
+
+            "-",
+
+            "⏱️",
+
+        )
+
+    st.write("")
+
+    col1, col2 = st.columns([2, 1])
+
+    with col1:
+
+        info_card(
+
+            "Willkommen",
+
+            """
+            Willkommen bei Spotify Analytics.
+
+            Dieses Dashboard führt dich Schritt für Schritt
+            durch deine Spotify-Historie.
+
+            Im nächsten Sprint wird hier automatisch
+            deine CSV geladen.
+            """,
+
+            "🎧",
+
+        )
+
+    with col2:
+
+        insight_card(
+
+            "Noch keine Daten vorhanden.",
+
+            """
+            Sobald eine CSV-Datei geladen wurde,
+            erscheinen hier automatisch
+            die wichtigsten Erkenntnisse.
+            """,
+
+        )
+
+    st.write("")
+
+    empty_state()

@@ -4,34 +4,21 @@ Top Artists.
 
 import pandas as pd
 
+from analysis.schema import ARTIST
+
 
 def top_artists(
     df: pd.DataFrame,
     limit: int = 10,
 ):
 
-    return (
-
-        df["master_metadata_album_artist_name"]
-
+    artists = (
+        df[ARTIST]
         .dropna()
-
         .value_counts()
-
         .head(limit)
-
-        .reset_index()
-
-        .rename(
-
-            columns={
-
-                "index": "Artist",
-
-                "master_metadata_album_artist_name": "Streams",
-
-            }
-
-        )
-
+        .rename_axis("Artist")
+        .reset_index(name="Streams")
     )
+
+    return artists

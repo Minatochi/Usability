@@ -1,43 +1,36 @@
 """
-analysis/insights.py
-
-Automatisch erzeugte Erkenntnisse.
+Automatische Spotify Insights.
 """
 
 import pandas as pd
 
+from analysis.schema import (
+    ARTIST,
+    TRACK,
+    ALBUM,
+)
 
-def top_artist(df: pd.DataFrame):
 
-    if "master_metadata_album_artist_name" not in df.columns:
+def _safe_mode(df: pd.DataFrame, column: str) -> str:
+
+    values = df[column].dropna()
+
+    if values.empty:
         return "-"
 
-    return (
-        df["master_metadata_album_artist_name"]
-        .value_counts()
-        .idxmax()
-    )
+    return values.value_counts().idxmax()
 
 
-def top_track(df: pd.DataFrame):
+def top_artist(df):
 
-    if "master_metadata_track_name" not in df.columns:
-        return "-"
-
-    return (
-        df["master_metadata_track_name"]
-        .value_counts()
-        .idxmax()
-    )
+    return _safe_mode(df, ARTIST)
 
 
-def top_album(df: pd.DataFrame):
+def top_track(df):
 
-    if "master_metadata_album_album_name" not in df.columns:
-        return "-"
+    return _safe_mode(df, TRACK)
 
-    return (
-        df["master_metadata_album_album_name"]
-        .value_counts()
-        .idxmax()
-    )
+
+def top_album(df):
+
+    return _safe_mode(df, ALBUM)

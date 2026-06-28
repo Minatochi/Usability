@@ -1,13 +1,17 @@
 """
 spacing.py
 
-8-Pixel Grid System.
+8-Pixel Design Grid.
 """
 
-XXS = 4
-XS = 8
-SM = 16
-MD = 24
-LG = 32
-XL = 48
-XXL = 64
+SPACE_XXS = 4
+SPACE_XS = 8
+SPACE_SM = 16
+SPACE_MD = 24
+SPACE_LG = 32
+SPACE_XL = 48
+SPACE_XXL = 64
+
+CARD_PADDING = 24
+SECTION_MARGIN = 32
+PAGE_PADDING = 40

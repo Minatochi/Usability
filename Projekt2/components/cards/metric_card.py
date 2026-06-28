@@ -1,7 +1,5 @@
 """
-Metric Card Component
-
-Eigene KPI-Karte für das Dashboard.
+Metric Card.
 """
 
 import streamlit as st
@@ -11,24 +9,20 @@ def metric_card(
     title: str,
     value: str,
     icon: str = "",
-    delta: str | None = None,
-    help_text: str | None = None,
+    subtitle: str = "",
 ):
-    """
-    Zeigt eine KPI Card an.
-    """
 
     with st.container(border=True):
 
-        col1, col2 = st.columns([1, 6])
+        left, right = st.columns([1, 5])
 
-        with col1:
+        with left:
+
             st.markdown(
-                f"<h2 style='text-align:center'>{icon}</h2>",
-                unsafe_allow_html=True,
+                f"# {icon}"
             )
 
-        with col2:
+        with right:
 
             st.caption(title)
 
@@ -36,8 +30,6 @@ def metric_card(
                 f"## {value}"
             )
 
-            if delta:
-                st.success(delta)
+            if subtitle:
 
-            if help_text:
-                st.caption(help_text)
+                st.caption(subtitle)

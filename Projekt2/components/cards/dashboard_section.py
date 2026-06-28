@@ -1,5 +1,5 @@
 """
-Section Header.
+Dashboard Section Header.
 """
 
 import streamlit as st
@@ -10,9 +10,14 @@ def dashboard_section(
     description: str,
 ):
     """
-    Einheitlicher Abschnitt im Dashboard.
+    Einheitlicher Abschnitt.
     """
 
     st.markdown(f"## {title}")
 
     st.caption(description)
+
+    st.markdown(
+        "<div style='margin-bottom:20px'></div>",
+        unsafe_allow_html=True,
+    )

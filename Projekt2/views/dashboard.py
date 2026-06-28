@@ -16,7 +16,7 @@ from components.feedback.empty_state import empty_state
 
 def render_dashboard() -> None:
 
-    df = st.session_state.get("dataset")
+    df = st.session_state.get("filtered_dataset")
 
     page_header(
         "Spotify Analytics",
@@ -30,6 +30,14 @@ def render_dashboard() -> None:
         return
 
     hero_banner(len(df))
+
+
+    from components.cards.filter_summary import (
+        render_filter_summary,
+    )
+
+    render_filter_summary(df)
+    
 
     dashboard_section(
         "Kennzahlen",

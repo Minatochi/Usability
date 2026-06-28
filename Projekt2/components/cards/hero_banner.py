@@ -1,7 +1,7 @@
 """
-Hero Banner Component.
+components/cards/hero_banner.py
 
-Begrüßt den Benutzer und zeigt den Status der aktuellen Analyse.
+Hero-Bereich des Dashboards.
 """
 
 import streamlit as st
@@ -16,12 +16,25 @@ def hero_banner(dataset_size: int) -> None:
         f"""
 # 🎵 Spotify Analytics
 
-Analysiere deinen Spotify-Datensatz
-mit interaktiven Visualisierungen
-und wissenschaftlich fundierten
-Auswertungen.
+### Analysiere deine Musikdaten mit interaktiven Visualisierungen
 
+Dieses Dashboard unterstützt dich dabei,
+Spotify-Daten systematisch auszuwerten und Muster
+in deinem Datensatz zu erkennen.
+
+**Aktuell werden {dataset_size:,} Songs analysiert.**
 """
     )
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.success("✅ Datensatz erfolgreich geladen")
+
+    with col2:
+        st.info("📊 Dashboard bereit")
+
+    with col3:
+        st.success("🎧 Analyse aktiv")
 
     st.divider()
